@@ -22,7 +22,7 @@ class RestController{
     get(){
         var posts = [];
         var settings = {
-            "url": "https://texty-89895.firebaseio.com/posts.json",
+            "url": "http://localhost:3000/tasks",
             "method": "GET",
             "timeout": 0,
           };
@@ -48,7 +48,7 @@ class RestController{
     delete(url, post){
 
         var settings = {
-            "url": "https://texty-89895.firebaseio.com/posts/MJ6_Ktrt5-UflMmf8Yk.json",
+            "url": "http://localhost:3000/tasks",
             "method": "DELETE",
             "timeout": 0,
           };

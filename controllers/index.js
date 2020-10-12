@@ -54,7 +54,7 @@ class PostController{
 
     getPosts() {
 
-        this.restController.get("https://texty-89895.firebaseio.com/posts.json",function(data,status,xhr){
+        this.restController.get("http://localhost:3000/tasks",function(data,status,xhr){
                 for(var id in data){
                     //if verifica di ugualianza (aggiungere)
                     var post = data[id];
@@ -87,7 +87,7 @@ class PostController{
         
 
         $.post({
-            url:"https://texty-89895.firebaseio.com/posts.json",
+            url:"http://localhost:3000/tasks",
             data : JSON.stringify(data),
             success:function(data,status,xhr){
                 this.createUIPost(post);
