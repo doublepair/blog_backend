@@ -1,5 +1,11 @@
+console.log("main");
+
 var posts = [];
 
+posts.push(new Post("titolo", "corpo", true, false, ["tag"]));
+posts.push(new Post("titolo", "corpo", false, false, ["tag"]));
+posts.push(new Post("titolo", "corpo", true, true, ["tag"]));
+posts.push(new Post("titolo", "corpo", false, true, ["tag"]));
 
 
 
@@ -9,16 +15,12 @@ var posts = [];
 // $(document).ready(function () {
 
 
-//     // var users = [
-//     //     'mario', 'giulio', 'alberto', 'claudia'
-//     // ]
 
 //     // $(".send-comment").click(function () {
 //     //     var commentText = $(".comment-text").val();
 
 //     //     var commentContainer = $(".comments-container");
-//     //     var commentRow = '<li class="list-group-item"><a href="#" class="badge badge-light">' + users[Math.round(Math.random(0, 3))
-//     //     ] + '</a>' + commentText + '</li>';
+//     //     var commentRow = '<li class="list-group-item"><a href="#" class="badge badge-light">'  + '</a>' + commentText + '</li>';
 
 //     //     commentContainer.append(commentRow);
 
@@ -33,7 +35,7 @@ var posts = [];
 
 //     // }
 
-    
+
 
 //     // $("#savePostBtn").click(addPost);
 

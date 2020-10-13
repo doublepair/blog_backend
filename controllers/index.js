@@ -1,3 +1,5 @@
+console.log("funziona");
+
 class PostController{
 
 
@@ -13,6 +15,7 @@ class PostController{
         this.modalDescription;
         this.modalPublicCheck;
         this.addPostBtn;
+        this.tag;
 
     }
     
@@ -24,23 +27,25 @@ class PostController{
             this.modal = $("#newPostModal");
             this.modalTitle = $("#postTitle");
             this.modalBody = $("#postBody");
-            this.modalCheck = $("#publicCheck");
+            this.modalPublicCheck = $("#publicCheck");
+            this.modalFeaturedCheck = $("#featuredCheck");
             this.addPostBtn = $("#savePostBtn");
-            this.addPostBtn = $("#savePostBtn");
+            this.tag = [""];
             
             this.addPostBtn.click(function(){
                 var post = new Post(
                     this.modalTitle.val(),
                     this.modalBody.val(),
-                    this.modalCheck.is(":checked"),
-                    false
+                    this.modalPublicCheck.is(":checked"),
+                    this.modalFeaturedCheck.is(":checked"),
+                    this.tag
                 );
                 this.newPost(post);
                 this.closeModal();
                 this.resetModal();
             }.bind(this));
 
-
+            for(var i in posts){this.createUIPost(post[i]);}
             this.getPosts();
 
            
@@ -50,27 +55,36 @@ class PostController{
 
     }
 
-
+    
 
     getPosts() {
 
-        this.restController.get("http://localhost:3000/tasks",function(data,status,xhr){
-                for(var id in data){
-                    //if verifica di ugualianza (aggiungere)
-                    var post = data[id];
+        this.restController.get(function(data,status,xhr){
+                 var postArr = [];
+                for(var i in data){
+                    if(post.public){
+                        if(post.featured){
+                            this.createUIPost(post);
+                        }
+                        else{
+                            postArr.push(post);
+                        }
+                    }
                     if(post.public === true){
                         console.log(this);
                         this.createUIPost(post);
                     }
                 }
 
-        }.bind(this));
+                console.log("funziona data aaa");
+                console.log(data);
 
-        
+        }.bind(this));
     }
 
+    
+
     newPost(post){
-        //api call
         console.log()
         var data = {
             "title":post.title,
@@ -143,13 +157,12 @@ class PostController{
     }
 
     closeModal() {
-        this.modal.modal('hide');
+        this.modal.modal("hide");
     }
 
 
     openModal() {
-
-
+        this.modal("show")
     }
 
 
